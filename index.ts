@@ -5,8 +5,8 @@ import { writeOutput } from './src/write-output';
 import { GROUP_SIZE } from './src/consts';
 
 async function main() {
-  //const readInterface = createReadInterface('test.csv');
-  //console.log('Reading from input/test.csv...');
+  //const readInterface = createReadInterface('list.csv');
+  //console.log('Reading from input/list.csv...');
   //const lines = await linesToList(readInterface);
   console.log('Reading from input/list.pdf...');
   const lines = await readPDF('list.pdf');
@@ -16,7 +16,7 @@ async function main() {
     if (index === groupIndex * GROUP_SIZE) {
       groupIndex++;
     }
-    return new OutputPerson().applyInputPerson(new InputPerson(data, groupIndex));
+    return new OutputPerson().applyInputPerson(new InputPerson(data, lines.length > GROUP_SIZE ? groupIndex : -1));
   });
   console.log(`${result.length} row${result.length === 1 ? '' : 's'} processed...`);
   await writeOutput(result);

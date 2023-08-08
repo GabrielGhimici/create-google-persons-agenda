@@ -59,10 +59,10 @@ class OutputPerson {
   }
 
   public applyInputPerson(person: InputPerson) {
-    const ending = `${ENDING_ROOT}${person.groupIndex}`;
-    this._name = `${person.lastName} ${person.firstName} ${ending}`;
-    this._givenName = person.lastName;
-    this._familyName = `${person.firstName} ${ending}`;
+    const ending = person.groupIndex !== -1 ? `${ENDING_ROOT}_${person.groupIndex}` : ENDING_ROOT;
+    this._name = `${person.firstName} ${person.lastName} ${ending}`;
+    this._givenName = person.firstName;
+    this._familyName = `${person.lastName} ${ending}`;
     this._groupMembership = '* myContacts';
     this._phone1Type = 'Mobile';
     this._phone1Value = person.phoneNumber;
